@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Web App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>به برنامه وب تلگرام خوش آمدید!</h1>
+    <button id="sendMessageButton">ارسال پیام</button>
+    <button id="openTonkeeperButton">باز کردن Tonkeeper</button>
+
+    <script>
+        // این تابع به شما امکان می‌دهد تا با استفاده از API تلگرام پیام ارسال کنید
+        function sendMessage() {
+            const message = "سلام از برنامه وب تلگرام!";
+            Telegram.WebApp.sendData(message);
+        }
+
+        document.getElementById('sendMessageButton').addEventListener('click', sendMessage);
+
+        // برای دریافت اطلاعات کاربر
+        const user = Telegram.WebApp.initDataUnsafe.user;
+        if (user) {
+            console.log("اطلاعات کاربر:", user);
+        }
+        document.getElementById('openTonkeeperButton').addEventListener('click', function() {
+            // مقدار مورد نظر برای ارسال به Tonkeeper
+            const amount = 0.1; // مقدار به توکن یا ارز مورد نظر شما
+
+            // URL برای باز کردن Tonkeeper با مقدار مشخص
+            const tonkeeperUrl = `tonkeeper://send?amount=${amount}`;
+
+            // باز کردن Tonkeeper
+            window.open(tonkeeperUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
